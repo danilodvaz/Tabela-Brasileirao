@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
 
     <title>Tabela Classificação Brasileirão</title>
 </head>
@@ -16,7 +17,9 @@
         <header>
             <div class="cabecalho">
                 <h3>TABELA</h3>
-                <button type="button" class="btn btn-primary">Inserir confontro</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalInserirConfronto">
+                    Inserir confronto
+                </button>
             </div>
         </header>
         <main>
@@ -37,22 +40,75 @@
                 </thead>
                 <tbody>
                     @foreach ($classificacao as $classificado)
-                        <tr>
-                            <td>{{ $classificado->posicao }}</td>
-                            <td>{{ $classificado->clube }}</td>
-                            <td>{{ $classificado->pontos }}</td>
-                            <td>{{ $classificado->jogos_disputados }}</td>
-                            <td>{{ $classificado->vitorias }}</td>
-                            <td>{{ $classificado->empates }}</td>
-                            <td>{{ $classificado->derrotas }}</td>
-                            <td>{{ $classificado->gols_pro }}</td>
-                            <td>{{ $classificado->gols_contra }}</td>
-                            <td>{{ $classificado->saldo_gol }}</td>
-                        </tr>
+                    <tr>
+                        <td>{{ $classificado->posicao }}</td>
+                        <td>{{ $classificado->clube }}</td>
+                        <td>{{ $classificado->pontos }}</td>
+                        <td>{{ $classificado->jogos_disputados }}</td>
+                        <td>{{ $classificado->vitorias }}</td>
+                        <td>{{ $classificado->empates }}</td>
+                        <td>{{ $classificado->derrotas }}</td>
+                        <td>{{ $classificado->gols_pro }}</td>
+                        <td>{{ $classificado->gols_contra }}</td>
+                        <td>{{ $classificado->saldo_gol }}</td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
         </main>
+        <div class="modal fade" id="ModalInserirConfronto" tabindex="-1" role="dialog" aria-labelledby="TituloModalConfronto" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalConfronto">Confronto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <fieldset>
+                                <legend>
+                                    <h6>Time da casa</h6>
+                                </legend>
+
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <select id="inputEstado" class="form-control">
+                                            <option>Times</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="number" class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            x
+                            <fieldset>
+                                <legend>
+                                    <h6>Visitante</h6>
+                                </legend>
+
+                                <div class="form-row">
+                                    <div class="col-3">
+                                        <input type="number" class="form-control" placeholder="0">
+                                    </div>
+                                    <div class="col-6">
+                                        <select id="inputEstado" class="form-control">
+                                            <option>Times</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
