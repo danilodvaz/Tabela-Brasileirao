@@ -9,8 +9,8 @@ class ClassificacaoController extends Controller
 {
     public function exibe()
     {
-        $classificacao = Classificacao::all();
+        $classificacao = Classificacao::orderBy('posicao', 'asc')->get();
+        
         return view('classificacao.exibe', ['classificacao' => $classificacao]);
-        // dd($classificacao[0]->clube);
     }
 }
