@@ -1,27 +1,41 @@
+// Reseta o formulário do modal, limpando os inputs.
+$("#ModalInserirConfronto").on("shown.bs.modal", () => {
+    $('.formulario-modal').trigger('reset');
+});
+
 function insereConfronto() {
-    const modalInserirConfronto = $("#ModalInserirConfronto");
+    try {
+        const modalInserirConfronto = $("#ModalInserirConfronto");
 
-    const timeCasa = $("#InputTimeCasa").val();
-    const golTimeCasa = $("#InputGolTimeCasa").val();
-    const timeVisitante = $("#InputTimeVisitante").val();
-    const golTimeVisitante = $("#InputGolTimeVisitante").val();
+        const timeCasa = $("#InputTimeCasa").val();
+        const golTimeCasa = $("#InputGolTimeCasa").val();
+        const timeVisitante = $("#InputTimeVisitante").val();
+        const golTimeVisitante = $("#InputGolTimeVisitante").val();
 
+        validarInsercaoConfronto(timeCasa, golTimeCasa, timeVisitante, golTimeVisitante);
 
+        atualizaClassificacao(timeCasa, golTimeCasa, timeVisitante, golTimeVisitante);
 
-
-    return true;
+        modalInserirConfronto.modal('hide');
+    } catch (e) {
+        alert(e);
+    }
 }
 
 function validarInsercaoConfronto(timeCasa, golTimeCasa, timeVisitante, golTimeVisitante) {
     if (!timeCasa || !timeVisitante || !golTimeCasa || !golTimeVisitante) {
-        alert("Favor preencher todos os campos");
-        return false;
+        throw "Favor preencher todos os campos";
     }
 
     if (golTimeCasa < 0 || golTimeVisitante < 0) {
-        alert("A quantidade de gols, deve ser maior ou igual a zero");
-        return false;
+        throw "A quantidade de gols, deve ser maior ou igual a zero";
     }
-    
-    return false;
+
+    return true;
+}
+
+function atualizaClassificacao(timeCasa, golTimeCasa, timeVisitante, golTimeVisitante) {
+    const dados = {
+        timeCasa, golTimeCasa, timeVisitante, golTimeVisitante
+    };
 }
