@@ -29,17 +29,17 @@
                     <tr>
                         <th scope="col">Posição</th>
                         <th scope="col">Clube</th>
-                        <th scope="col">PTS</th>
-                        <th scope="col">J</th>
-                        <th scope="col">V</th>
-                        <th scope="col">E</th>
-                        <th scope="col">D</th>
-                        <th scope="col">GP</th>
-                        <th scope="col">GC</th>
-                        <th scope="col">SG</th>
+                        <th scope="col" data-toggle="tooltip" title="Pontos">PTS</th>
+                        <th scope="col" data-toggle="tooltip" title="Jogos">J</th>
+                        <th scope="col" data-toggle="tooltip" title="Vitórias">V</th>
+                        <th scope="col" data-toggle="tooltip" title="Empates">E</th>
+                        <th scope="col" data-toggle="tooltip" title="Derrotas">D</th>
+                        <th scope="col" data-toggle="tooltip" title="Gols Prós">GP</th>
+                        <th scope="col" data-toggle="tooltip" title="Gols Contra">GC</th>
+                        <th scope="col" data-toggle="tooltip" title="Saldo de Gols">SG</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="ConteudoTabela">
                     @foreach ($classificacao as $classificado)
                     <tr>
                         <td>{{ $classificado->posicao }}</td>

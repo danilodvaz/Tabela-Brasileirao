@@ -39,11 +39,30 @@ function atualizaClassificacao(timeCasa, golTimeCasa, timeVisitante, golTimeVisi
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
+            const classificacao = JSON.parse(this.responseText);
+            let htmlConteudoTabela = '';
+
+            for (let classificado of classificacao) {
+                htmlConteudoTabela += '<tr>';
+
+                htmlConteudoTabela += `<td>${classificado.posicao}</td>`
+                htmlConteudoTabela += `<td>${classificado.clube}</td>`
+                htmlConteudoTabela += `<td><strong>${classificado.pontos}</strong></td>`
+                htmlConteudoTabela += `<td>${classificado.jogos_disputados}</td>`
+                htmlConteudoTabela += `<td>${classificado.vitorias}</td>`
+                htmlConteudoTabela += `<td>${classificado.empates}</td>`
+                htmlConteudoTabela += `<td>${classificado.derrotas}</td>`
+                htmlConteudoTabela += `<td>${classificado.gols_pro}</td>`
+                htmlConteudoTabela += `<td>${classificado.gols_contra}</td>`
+                htmlConteudoTabela += `<td>${classificado.saldo_gol}</td>`
+                
+                htmlConteudoTabela += '</tr>';
+            }
+
+            $("#ConteudoTabela").html(htmlConteudoTabela);
         }
     };
     
-    // xhttp.open("GET", "http://127.0.0.1:8000/classificacao", true);
     xhttp.open("POST", "http://127.0.0.1:8000/classificacao/atualiza", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`timeCasa=${timeCasa}&golTimeCasa=${golTimeCasa}&timeVisitante=${timeVisitante}&golTimeVisitante=${golTimeVisitante}`);

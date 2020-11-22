@@ -15,7 +15,7 @@ class CreateClassificacaoTable extends Migration
     {
         Schema::create('classificacao', function (Blueprint $table) {
             $table->id();
-            $table->integer('posicao')->unique();
+            $table->integer('posicao');
             $table->string('clube', 50)->unique();
             $table->integer('pontos');
             $table->integer('jogos_disputados');

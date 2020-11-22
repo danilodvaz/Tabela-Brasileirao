@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classificacao extends Model
 {
     protected $table = 'classificacao';
+    public $timestamps = false;
     protected $fillable = [
         'posicao',
         'clube',
