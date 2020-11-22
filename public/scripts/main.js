@@ -35,7 +35,16 @@ function validarInsercaoConfronto(timeCasa, golTimeCasa, timeVisitante, golTimeV
 }
 
 function atualizaClassificacao(timeCasa, golTimeCasa, timeVisitante, golTimeVisitante) {
-    const dados = {
-        timeCasa, golTimeCasa, timeVisitante, golTimeVisitante
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+        }
     };
+    
+    // xhttp.open("GET", "http://127.0.0.1:8000/classificacao", true);
+    xhttp.open("POST", "http://127.0.0.1:8000/classificacao/atualiza", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(`timeCasa=${timeCasa}&golTimeCasa=${golTimeCasa}&timeVisitante=${timeVisitante}&golTimeVisitante=${golTimeVisitante}`);
 }
